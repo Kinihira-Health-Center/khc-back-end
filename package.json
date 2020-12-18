@@ -1,0 +1,19 @@
+{
+  "name": "khc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Siborurema Jean Jaures",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kinihira-Health-Center/khc-back-end.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kinihira-Health-Center/khc-back-end/issues"
+  },
+  "homepage": "https://github.com/Kinihira-Health-Center/khc-back-end#readme",
+  "description": ""
+}
