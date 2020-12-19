@@ -6,7 +6,7 @@ const generateCredentials = (database, host) => ({
   database,
   host,
   port: process.env.DB_PORT,
-  dialect: 'mysql',
+  dialect: 'postgres',
   define: {
     timestamps: false
   },

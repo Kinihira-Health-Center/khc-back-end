@@ -4,7 +4,7 @@ import morgan from 'morgan';
 // import path from 'path';
 import cors from 'cors';
 import serverSocket from 'socket.io';
-import allRoutes from './routes';
+// import allRoutes from './routes';
 dotenv.config();
 const app = express();
 const basePath = '/api';
@@ -12,10 +12,10 @@ const port = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(basePath, cors(), allRoutes);
+// app.use(basePath, cors(), allRoutes);
 app.use('/uploads', express.static('uploads'));
 app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to Imikino App' });
+  res.status(200).json({ message: 'Welcome to KHC App' });
 });
 app.use((req, res) => {
   res.status(404);
@@ -25,7 +25,7 @@ app.use((req, res) => {
   });
 });
 const socketToListen = app.listen(port, () => {
-  process.stdout.write(`Imikino App running on ${port}\n`);
+  process.stdout.write(`KHC App running on ${port}\n`);
 });
 const io = serverSocket(socketToListen);
 io.sockets.on('connection', (socket) => {
