@@ -41,7 +41,7 @@ const consultationDefinition = (sequelize, DataTypes) => {
     }, {});
   
     Consultation.associate = (models) => {
-      User.hasOne(models.patient, {
+      Consultation.hasOne(models.patient, {
         foreignKey: 'patient_id',
         as: 'patient',
         onDelete: 'CASCADE',
