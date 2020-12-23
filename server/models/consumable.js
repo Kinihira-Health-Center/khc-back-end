@@ -6,14 +6,6 @@ const consumableDefinition = (sequelize, DataTypes) => {
       updated_at: { type: DataTypes.DATE }
     }, {});
   
-    Token.associate = (models) => {
-      Token.belongsTo(models.user, {
-        foreignKey: 'userId',
-        as: 'user',
-        onDelete: 'CASCADE',
-      });
-    };
-  
     return Consumable;
   };
   

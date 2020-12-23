@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import serverSocket from 'socket.io';
 
-// import allRoutes from './routes';
+import allRoutes from './routes';
 
 dotenv.config();
 const app = express();
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
 
-// app.use(basePath, cors(), allRoutes);
+app.use(basePath, cors(), allRoutes);
 
 app.use('/uploads', express.static('uploads'));
 

@@ -24,7 +24,7 @@ const consultationDefinition = (sequelize, DataTypes) => {
         type: DataTypes.ARRAY(DataTypes.DATE)
       },
       ambulance: {
-        type: DataTypes.DATES
+        type: DataTypes.DATE
       },
       others: {
         type: DataTypes.STRING
@@ -40,18 +40,18 @@ const consultationDefinition = (sequelize, DataTypes) => {
       }
     }, {});
   
-    Consultation.associate = (models) => {
-      Consultation.hasOne(models.patient, {
-        foreignKey: 'patient_id',
-        as: 'patient',
-        onDelete: 'CASCADE',
-      });
-    };
-    Consultation.hasOne(models.Consultation, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
+    // Consultation.associate = (models) => {
+    //   Consultation.hasOne(models.patient, {
+    //     foreignKey: 'patient_id',
+    //     as: 'patient',
+    //     onDelete: 'CASCADE',
+    //   });
+    // };
+    // Consultation.hasOne(models.consultation, {
+    //   foreignKey: {
+    //     allowNull: false
+    //   }
+    // });
     return Consultation;
   };
   
