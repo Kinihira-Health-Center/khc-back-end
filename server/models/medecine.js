@@ -1,5 +1,5 @@
 const medecineDefinition = (sequelize, DataTypes) => {
-    const Medecine = sequelize.define('token', {
+    const Medecine = sequelize.define('medecine', {
       name: { type: DataTypes.STRING },
       prise: { type: DataTypes.STRING },
       created_at: { type: DataTypes.DATE },

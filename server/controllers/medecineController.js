@@ -1,18 +1,18 @@
-import patientDB from '../helpers/patientDB';
+import medecineDB from '../helpers/medecineDB';
 import pagination from '../helpers/paginateHelper';
 /**
  * This class contains all methods
  * required to handle
  * signup and login and logout endpoints' request.
  */
-class PatientController {
+class MedecineController {
   /**
    * This method handle the signup request.
    * @param {object} req The user's request.
    * @param {object} res The response.
    * @returns {object} The status and some data of the user.
    */
-  static async addPatient(req, res) {
+  static async addMedecine(req, res) {
     // const patientExists = await patientDB.findPatientByAttr("name", req.body.name);
     // if (patientExists) {
     //   return res.status(422).json({
@@ -20,11 +20,11 @@ class PatientController {
     //     error: 'This patient already exists'
     //   });
     // }
-    const patient = await patientDB.savePatient({ ...req.body });
+    const medecine = await medecineDB.saveMedecine({ ...req.body });
     return res.status(201).json({
       status: 201,
-      message: `${patient.firstname} was created successfully`,
-      data: patient
+      message: `${medecine.name} was created successfully`,
+      data: medecine
     });
   }
   /**
@@ -33,15 +33,15 @@ class PatientController {
    * @param {object} res The response.
    * @returns {object} The status and some data of the user.
    */
-  static async changePatient(req, res) {
-    const patientExists = await patientDB.findPatientByAttr("id", parseInt(req.params.id, 10));
+  static async changeMedecine(req, res) {
+    const patientExists = await patientDB.findMedecineByAttr("id", parseInt(req.params.id, 10));
     if (patientExists) {
-      await patientDB.updatePatient({ ...req.body }, patientExists.id);
-      const patient = await patientDB.findPatientByAttr("id", patientExists.id);
+      await patientDB.updateMedecine({ ...req.body }, patientExists.id);
+      const patient = await medecineDB.findMedecineByAttr("id", patientExists.id);
       return res.status(200).json({
         status: 200,
-        message: `${patient.firstname} was successfully changed`,
-        data: patient
+        message: `${medecine.name} was successfully changed`,
+        data: medecine
       });
     }
     return res.status(404).json({
@@ -56,12 +56,12 @@ class PatientController {
    * @param {object} next The next middleware.
    * @returns {object} The status and some data of the user.
    */
-  static async viewPatients(req, res, next) {
+  static async viewMedecines(req, res, next) {
     const { start, end, pages, skip, paginate } = await pagination.paginateData(req.query);
-    const patients = await patientDB.findAllPatients(skip, start);
-    const AllData = patients.rows;
-    const countAllData = patients.count;
-    if (patients.rows.length === 0) {
+    const medecines = await medecineDB.findAllmedecines(skip, start);
+    const AllData = medecines.rows;
+    const countAllData = medecines.count;
+    if (medecines.rows.length === 0) {
       return res.status(404).json({
         status: 404,
         message: `There are no patients yet`
@@ -76,10 +76,10 @@ class PatientController {
    * @param {object} res The response.
    * @returns {object} The status and some data of the user.
    */
-  static async viewPatient(req, res) {
+  static async viewMedecine(req, res) {
     const { id } = req.params;
-    const patient = await patientDB.findPatientByAttr('id', parseInt(id, 10));
-    if (!patient) {
+    const medecine = await patientDB.findmedecineByAttr('id', parseInt(id, 10));
+    if (!medecine) {
       return res.status(404).json({
         status: 404,
         error: "The patient was not found"
@@ -88,7 +88,7 @@ class PatientController {
     return res.status(200).json({
       status: 200,
       message: "The patient fetched successfully",
-      data: patient
+      data: medecine
     });
   }
   /**
@@ -97,22 +97,22 @@ class PatientController {
    * @param {object} res The response.
    * @returns {object} The status and some data of the user.
    */
-  static async removePatient(req, res) {
+  static async removeMedecine(req, res) {
     const { id } = req.params;
-    const patient = await patientDB.findPatientByAttr('id', parseInt(id, 10
+    const medecine = await medecineDB.findMedecineByAttr('id', parseInt(id, 10
       ));
-    if (!patient) {
+    if (!medecine) {
       return res.status(404).json({
         status: 404,
         error: "The patient was not found"
       });
     }
-    await patientDB.deletePatient(patient.id);
+    await medecineDB.deleteMedecine(medecine.id);
     return res.status(204).json({
       status: 200,
       message: "The patient removed successfully",
-      data: patient
+      data: medecine
     });
   }
 }
-export default PatientController;
+export default MedecineController;
