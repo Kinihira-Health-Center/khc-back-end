@@ -57,5 +57,5 @@ const up = (queryInterface, Sequelize) => queryInterface.createTable('patients',
     type: Sequelize.DATE
   }
 });
-const down = (queryInterface) => queryInterface.dropTable('patient');
+const down = (queryInterface) => queryInterface.dropTable('patients');
 export { up, down };

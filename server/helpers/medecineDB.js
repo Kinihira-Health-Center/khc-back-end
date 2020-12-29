@@ -4,7 +4,7 @@ const {
 } = models;
 /**
  * class to deal with all needed operations
- * on the location table
+ * on the medecine table
  */
 class MedecineDB {
   /**
@@ -21,9 +21,9 @@ class MedecineDB {
   }
   /**
    * insert generated consultation into table in the DB.
-   * @param {object} theMedecine The location
+   * @param {object} theMedecine The medecine
    *
-   * @returns {string} The users's location.
+   * @returns {string} The medecine's record.
    */
   static async saveMedecine(theMedecine) {
     const record = await medecine.create({

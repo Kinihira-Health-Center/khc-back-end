@@ -1,4 +1,4 @@
-const up = (queryInterface, Sequelize) => queryInterface.createTable('medecine', {
+const up = (queryInterface, Sequelize) => queryInterface.createTable('medecines', {
   id: {
     allowNull: false,
     autoIncrement: true,

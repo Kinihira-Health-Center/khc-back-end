@@ -34,10 +34,10 @@ class MedecineController {
    * @returns {object} The status and some data of the user.
    */
   static async changeMedecine(req, res) {
-    const patientExists = await patientDB.findMedecineByAttr("id", parseInt(req.params.id, 10));
-    if (patientExists) {
-      await patientDB.updateMedecine({ ...req.body }, patientExists.id);
-      const patient = await medecineDB.findMedecineByAttr("id", patientExists.id);
+    const medecineExists = await medecineDB.findMedecineByAttr("id", parseInt(req.params.id, 10));
+    if (medecineExists) {
+      await patientDB.updateMedecine({ ...req.body }, medecineExists.id);
+      const patient = await medecineDB.findMedecineByAttr("id", medecineExists.id);
       return res.status(200).json({
         status: 200,
         message: `${medecine.name} was successfully changed`,
@@ -58,7 +58,7 @@ class MedecineController {
    */
   static async viewMedecines(req, res, next) {
     const { start, end, pages, skip, paginate } = await pagination.paginateData(req.query);
-    const medecines = await medecineDB.findAllmedecines(skip, start);
+    const medecines = await medecineDB.findAllMedecines(skip, start);
     const AllData = medecines.rows;
     const countAllData = medecines.count;
     if (medecines.rows.length === 0) {
@@ -78,7 +78,7 @@ class MedecineController {
    */
   static async viewMedecine(req, res) {
     const { id } = req.params;
-    const medecine = await patientDB.findmedecineByAttr('id', parseInt(id, 10));
+    const medecine = await madecineDB.findMedecineByAttr('id', parseInt(id, 10));
     if (!medecine) {
       return res.status(404).json({
         status: 404,
